@@ -15,51 +15,60 @@ var renderer = new THREE.WebGLRenderer({antialias: true, alpha: true});
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
-//Create the lamp top
-/*var points = [];
-for (var i = 0; i < 10; i++) {
-    points.push(new THREE.Vector2(Math.sin(i * 0.2) * 10 + 5, (i - 5) * 2));
-}*/
+var loader = new THREE.FontLoader();
+
+loader.load( 'fonts/helvetiker_regular.typeface.json', function ( font ) {
+    var textGeo = new THREE.TextGeometry( 'Hello three.js!', {
+        font: font,
+        size: 80,
+        height: 5,
+        curveSegments: 12,
+        bevelEnabled: true,
+        bevelThickness: 10,
+        bevelSize: 8,
+        bevelSegments: 5
+    } );
+    scene.add(textGeo);
+} );
 
 
 // Create geometry
-var buildingWallGeo = new THREE.BoxGeometry(10, 10, 1);
+var buildingWallGeo = new THREE.BoxGeometry(40, 40, 1);
+var buildingDoorGeo = new THREE.BoxGeometry(5,8,1);
 var groundGeo = new THREE.PlaneGeometry(100, 100);
 var carTireGeo = new THREE.TorusGeometry(.7, 0.30, 4, 12);
 var carBaseGeo = new THREE.BoxGeometry(9, 1.6, 3.5);
-var carTopGeo = new THREE.BoxGeometry(5,3,2.8);
-var carConeGeo = new THREE.ConeGeometry( 5, 20, 32 );
-
-//var lampTopGeo = new THREE.LatheGeometry(points);
+var carTopGeo = new THREE.BoxGeometry(5, 3, 2.8);
+var carConeGeo = new THREE.ConeGeometry(1, 2.5, 32);
+var carSlantGeo = new THREE.TetrahedronGeometry(3,0);
 
 
 // Create materials
-var buildingWallMaterial = new THREE.MeshBasicMaterial({map: THREE.ImageUtils.loadTexture('Yellobrk.bmp')});
-var groundMaterial = new THREE.MeshBasicMaterial({map: THREE.ImageUtils.loadTexture('groundtexture.png')});
-var carTireMaterial = new THREE.MeshBasicMaterial({map: THREE.ImageUtils.loadTexture('tiretexture.jpg')});
-var carBaseMaterial = new THREE.MeshBasicMaterial({map: THREE.ImageUtils.loadTexture('randomtexture.jpg')});
-var material = new THREE.MeshBasicMaterial( {color: 0xffff00} );
-
-//var lampTopMaterial = new THREE.MeshBasicMaterial({color: 0xffff00});
+var buildingWallMaterial = new THREE.MeshBasicMaterial({map: THREE.ImageUtils.loadTexture('textures/Yellobrk.bmp')});
+var groundMaterial = new THREE.MeshBasicMaterial({map: THREE.ImageUtils.loadTexture('textures/groundtexture.png')});
+var carTireMaterial = new THREE.MeshBasicMaterial({map: THREE.ImageUtils.loadTexture('textures/tiretexture.jpg')});
+var carBaseMaterial = new THREE.MeshBasicMaterial({map: THREE.ImageUtils.loadTexture('textures/randomtexture.jpg')});
+var carConeMaterial = new THREE.MeshBasicMaterial({map: THREE.ImageUtils.loadTexture('textures/conetexture.jpg')});
 
 
 // Combine materials and geometry (mesh)
 var buildingWall = new THREE.Mesh(buildingWallGeo, buildingWallMaterial);
+var buildingDoor = new THREE.Mesh(buildingDoorGeo, buildingWallMaterial);
 var ground = new THREE.Mesh(groundGeo, groundMaterial);
 var carTire1 = new THREE.Mesh(carTireGeo, carTireMaterial);
 var carBase = new THREE.Mesh(carBaseGeo, carBaseMaterial);
 var carTop = new THREE.Mesh(carTopGeo, carBaseMaterial);
-var carCone = new THREE.Mesh( carConeGeo, material );
-//var lampTop = new THREE.Mesh(lampTopGeo, lampTopMaterial);
+var carCone = new THREE.Mesh(carConeGeo, carConeMaterial);
+var carSlant = new THREE.Mesh(carSlantGeo, carConeMaterial);
 
 
-// clone the mesh
+// Clone mesh objects
 var carTire2 = carTire1.clone();
 var carTire3 = carTire1.clone();
 var carTire4 = carTire1.clone();
-var buildingWall2 = buildingWall.clone();
-var buildingWall3 = buildingWall.clone();
-var buildingWall4 = buildingWall.clone();
+var buildingWallLeft = buildingWall.clone();
+var buildingWallRight = buildingWall.clone();
+var buildingWallBack = buildingWall.clone();
 
 
 // Create groups
@@ -76,43 +85,46 @@ carGroup.add(carTire3);
 carGroup.add(carTire4);
 carGroup.add(carBase);
 carGroup.add(carTop);
-
-// Update positions
-buildingWall.position.set(10,5,0);
-buildingWall2.position.set(0,5,0);
-buildingWall3.position.set(20,5,0);
-buildingWall4.position.set(30,5,0);
-
-carTire1.position.set(0,1,0);
-carTire2.position.set(0, 1, 4);
-carTire3.position.set(7, 1, 0);
-carTire4.position.set(7, 1, 4);
-carBase.position.set(3.5,1.2, 2);
-carTop.position.set(3.5,2,2);
-
-carGroup.position.set(0,0,10);
-
-//rotate objects
-groundGeo.rotateX(-Math.PI / 2);
-
+carGroup.add(carCone);
+carGroup.add(carSlant);
 
 var buildingGroup = new THREE.Group();
 buildingGroup.add(buildingWall);
-buildingGroup.add(buildingWall2);
-buildingGroup.add(buildingWall3);
-buildingGroup.add(buildingWall4);
+buildingGroup.add(buildingWallLeft);
+buildingGroup.add(buildingWallRight);
+buildingGroup.add(buildingWallBack);
+buildingGroup.add(buildingDoor);
 
 
-// Add the object to the scene
+// Update positions
+//buildingWall.position.set(10, 5, 0);
+carTire1.position.set(0, 1, 0);
+carTire2.position.set(0, 1, 4);
+carTire3.position.set(7, 1, 0);
+carTire4.position.set(7, 1, 4);
+carBase.position.set(3.5, 1.2, 2);
+carTop.position.set(3.5, 2, 2);
+carCone.position.set(3.5, 4.8, 2);
+carGroup.position.set(0, 0, 10);
+
+buildingWall.position.set(0, 20, 0);
+buildingWallLeft.position.set(20,20,20);
+buildingWallRight.position.set(-20,20,20);
+buildingWallBack.position.set(0,20,40);
+buildingDoor.position.set(0,4,-1);
+
+
+// Rotate objects
+groundGeo.rotateX(-Math.PI / 2);
+buildingWallLeft.rotateY(-Math.PI / 2);
+buildingWallRight.rotateY(-Math.PI / 2);
+
+
+// Add objects and groups to scene
 scene.add(carTireGroup);
 scene.add(carGroup);
-scene.add( carCone )
-
 scene.add(buildingGroup);
-
 scene.add(ground);
-
-//scene.add(lampTop);
 
 
 // Create glorious light
@@ -134,57 +146,49 @@ controls.autoRotate = false;
 controls.autoRotateSpeed = 1;
 controls.noKeys = true;
 controls.keyPanSpeed = 100;
+controls.enableZoom = true;
 
+// Clock for animation
 var clock = new THREE.Clock();
 
-var tireSpeed = 2;
-var carSpeed = 1;
-
-var fired = false;
+var tireSpeed = 0;
+var carSpeed = 0;
+var fired = false; // For one time button input (Press and release)
 
 var render = function () {
-
-    /*    buildingWall.positionX = 343;
-        buildingWall.__dirtyPosition = true;*/
-
     requestAnimationFrame(render);
     var delta = clock.getDelta();
 
-
-
-    document.addEventListener('keydown', function(event) {
-        if (event.code === 'ArrowLeft' && !fired) {
+    // Change speed of the car
+    document.addEventListener('keydown', function (event) {
+        if (event.code === 'ArrowRight' && !fired) {
             fired = true;
-            carSpeed+=2;
-            tireSpeed+=2;
+            carSpeed += 2;
+            tireSpeed += 2;
         }
-        else if (event.code === 'ArrowRight' && !fired)
-        {
+        else if (event.code === 'ArrowLeft' && !fired) {
             fired = true;
-            carSpeed-=2;
-            tireSpeed-=2;
+            carSpeed -= 2;
+            tireSpeed -= 2;
         }
     });
 
-    document.addEventListener('keyup', function(event) {
-            fired = false;
+    document.addEventListener('keyup', function (event) {
+        fired = false;
     });
 
     carGroup.position.x += carSpeed * delta;
 
-    //rotate tires
+    // Rotate tires
     carTire1.rotation.z -= tireSpeed * delta;
     carTire2.rotation.z -= tireSpeed * delta;
     carTire3.rotation.z -= tireSpeed * delta;
     carTire4.rotation.z -= tireSpeed * delta;
 
-
     //carTireGroup.rotation.z += 1.2 * delta;
     controls.update();
     renderer.render(scene, camera);
 };
-
-
 
 render();
 
