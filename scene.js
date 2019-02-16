@@ -105,7 +105,8 @@ carTire4.position.set(7, 1, 4);
 carBase.position.set(3.5, 1.2, 2);
 carTop.position.set(3.5, 2, 2);
 carCone.position.set(3.5, 4.8, 2);
-carGroup.position.set(0, 0, 10);
+carSlant.position.set(5,5,5);
+carGroup.position.set(8, 0, -10);
 
 buildingWall.position.set(0, 20, 0);
 buildingWallLeft.position.set(20,20,20);
@@ -118,6 +119,7 @@ buildingDoor.position.set(0,4,-1);
 groundGeo.rotateX(-Math.PI / 2);
 buildingWallLeft.rotateY(-Math.PI / 2);
 buildingWallRight.rotateY(-Math.PI / 2);
+carSlant.rotateX(-Math.PI / 2);
 
 
 // Add objects and groups to scene

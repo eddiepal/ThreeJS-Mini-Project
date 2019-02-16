@@ -1,29 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/scene.js" line="149" />
+    <bookmark url="file://$PROJECT_DIR$/scene.js" line="151" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="867163b2-08f3-4d4c-9a35-5ecbd5b92af6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/textures/conetexture.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/textures/doortexture.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Yellobrk.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/textures/Yellobrk.bmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/earth.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/textures/earth.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/earth_normal.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/textures/earth_normal.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/groundtexture.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/textures/groundtexture.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/groundtexture.png" beforeDir="false" afterPath="$PROJECT_DIR$/textures/groundtexture.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lamptoptexture.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/textures/lamptoptexture.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/negx.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/negy.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/negz.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/posx.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/posy.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/posz.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/randomtexture.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/textures/randomtexture.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scene.js" beforeDir="false" afterPath="$PROJECT_DIR$/scene.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tiretexture.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/textures/tiretexture.jpg" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -90,13 +72,13 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="html" value="80" />
-          <entry key="js" value="6727" />
+          <entry key="js" value="6816" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="HTML" value="80" />
-          <entry key="JavaScript" value="6727" />
+          <entry key="JavaScript" value="6816" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -121,8 +103,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/scene.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="17" column="36" lean-forward="true" selection-start-line="17" selection-start-column="36" selection-end-line="17" selection-end-column="36" />
+            <state relative-caret-position="510">
+              <caret line="105" column="31" lean-forward="true" selection-start-line="105" selection-start-column="31" selection-end-line="105" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -296,19 +278,19 @@
       <workItem from="1550155742308" duration="1352000" />
       <workItem from="1550163737050" duration="11060000" />
       <workItem from="1550274718500" duration="1746000" />
-      <workItem from="1550306618530" duration="3611000" />
+      <workItem from="1550306618530" duration="4648000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="63266000" />
+    <option name="totallyTimeSpent" value="64303000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.243346" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.12737642" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="0" weight="0.32884097" />
       <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" weight="0.32884097" />
@@ -354,8 +336,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/scene.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="36" lean-forward="true" selection-start-line="17" selection-start-column="36" selection-end-line="17" selection-end-column="36" />
+        <state relative-caret-position="510">
+          <caret line="105" column="31" lean-forward="true" selection-start-line="105" selection-start-column="31" selection-end-line="105" selection-end-column="31" />
         </state>
       </provider>
     </entry>
