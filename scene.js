@@ -33,36 +33,40 @@ loader.load( 'fonts/helvetiker_regular.typeface.json', function ( font ) {
 
 
 // Create geometry
-var buildingWallGeo = new THREE.BoxGeometry(40, 40, 1);
+var buildingWallGeo = new THREE.BoxGeometry(40, 60, 1);
 var buildingDoorGeo = new THREE.BoxGeometry(5,8,1);
-var buildingWindowGeo = new THREE.BoxGeometry(4,4,.2);
+var buildingWindowGeo = new THREE.BoxGeometry(6,6,.2);
+var buildingWindowPillarGeo = new THREE.CylinderGeometry( 2, 2, 5, 32 );
+var buildingRoofGeo = new THREE.CylinderGeometry(20,20,40,8,1,false,0,3);
 var groundGeo = new THREE.PlaneGeometry(100, 100);
 var carTireGeo = new THREE.TorusGeometry(.7, 0.30, 4, 12);
 var carBaseGeo = new THREE.BoxGeometry(9, 1.6, 3.5);
 var carTopGeo = new THREE.BoxGeometry(5, 3, 2.8);
 var carConeGeo = new THREE.ConeGeometry(1, 2.5, 32);
-var buildingWindowPillar = new THREE.CylinderGeometry( 5, 5, 20, 32 );
 
 
 // Create materials
-var buildingWallMaterial = new THREE.MeshBasicMaterial({map: THREE.ImageUtils.loadTexture('textures/Yellobrk.bmp')});
 var groundMaterial = new THREE.MeshBasicMaterial({map: THREE.ImageUtils.loadTexture('textures/groundtexture.png')});
 var carTireMaterial = new THREE.MeshBasicMaterial({map: THREE.ImageUtils.loadTexture('textures/tiretexture.jpg')});
 var carBaseMaterial = new THREE.MeshBasicMaterial({map: THREE.ImageUtils.loadTexture('textures/randomtexture.jpg')});
 var carConeMaterial = new THREE.MeshBasicMaterial({map: THREE.ImageUtils.loadTexture('textures/conetexture.jpg')});
+var buildingWallMaterial = new THREE.MeshBasicMaterial({map: THREE.ImageUtils.loadTexture('textures/walltexturegrey.jpg')});
 var buildingDoorMaterial = new THREE.MeshBasicMaterial({map: THREE.ImageUtils.loadTexture('textures/doortexture.jpg')});
 var buildingWindowMaterial = new THREE.MeshBasicMaterial({map: THREE.ImageUtils.loadTexture('textures/windowtexture.jpg')});
+var buildingRoofMaterial = new THREE.MeshBasicMaterial({map: THREE.ImageUtils.loadTexture('textures/rooftexture.jpg')});
 
 
 // Combine materials and geometry (mesh)
 var buildingWall = new THREE.Mesh(buildingWallGeo, buildingWallMaterial);
 var buildingDoor = new THREE.Mesh(buildingDoorGeo, buildingDoorMaterial);
 var buildingWindow = new THREE.Mesh(buildingWindowGeo, buildingWindowMaterial);
+var buildingWindowPillar = new THREE.Mesh(buildingWindowPillarGeo, buildingWindowMaterial);
 var ground = new THREE.Mesh(groundGeo, groundMaterial);
 var carTire1 = new THREE.Mesh(carTireGeo, carTireMaterial);
 var carBase = new THREE.Mesh(carBaseGeo, carBaseMaterial);
 var carTop = new THREE.Mesh(carTopGeo, carBaseMaterial);
 var carCone = new THREE.Mesh(carConeGeo, carConeMaterial);
+var buildingRoof = new THREE.Mesh(buildingRoofGeo, buildingRoofMaterial);
 
 
 // Clone mesh objects
@@ -75,6 +79,8 @@ var buildingWallBack = buildingWall.clone();
 var buildingWindow2 = buildingWindow.clone();
 var buildingWindow3 = buildingWindow.clone();
 var buildingWindow4 = buildingWindow.clone();
+var buildingWindow5 = buildingWindow.clone();
+var buildingWindow6 = buildingWindow.clone();
 
 
 // Create groups
@@ -103,33 +109,10 @@ buildingGroup.add(buildingWindow);
 buildingGroup.add(buildingWindow2);
 buildingGroup.add(buildingWindow3);
 buildingGroup.add(buildingWindow4);
-
-// Update positions
-//buildingWall.position.set(10, 5, 0);
-carTire1.position.set(0, 1, 0);
-carTire2.position.set(0, 1, 4);
-carTire3.position.set(7, 1, 0);
-carTire4.position.set(7, 1, 4);
-carBase.position.set(3.5, 1.2, 2);
-carTop.position.set(3.5, 2, 2);
-carCone.position.set(3.5, 4.8, 2);
-carGroup.position.set(8, 0, -10);
-
-buildingWall.position.set(0, 20, 0);
-buildingWallLeft.position.set(20,20,20);
-buildingWallRight.position.set(-20,20,20);
-buildingWallBack.position.set(0,20,40);
-buildingDoor.position.set(0,4,-.3);
-buildingWindow.position.set(-10,20,-0.7);
-buildingWindow2.position.set(10,20,-0.7);
-buildingWindow3.position.set(-10,34,-0.7);
-buildingWindow4.position.set(10,34,-0.7);
-
-
-// Rotate objects
-groundGeo.rotateX(-Math.PI / 2);
-buildingWallLeft.rotateY(-Math.PI / 2);
-buildingWallRight.rotateY(-Math.PI / 2);
+buildingGroup.add(buildingWindow5);
+buildingGroup.add(buildingWindow6);
+buildingGroup.add(buildingWindowPillar);
+buildingGroup.add(buildingRoof);
 
 
 // Add objects and groups to scene
@@ -137,6 +120,46 @@ scene.add(carTireGroup);
 scene.add(carGroup);
 scene.add(buildingGroup);
 scene.add(ground);
+
+
+// Update mesh positions
+carTire1.position.set(0, 1, 0);
+carTire2.position.set(0, 1, 4);
+carTire3.position.set(7, 1, 0);
+carTire4.position.set(7, 1, 4);
+carBase.position.set(3.5, 1.2, 2);
+carTop.position.set(3.5, 2, 2);
+carCone.position.set(3.5, 4.8, 2);
+// All car part objects
+carGroup.position.set(8, 0, -10);
+
+buildingWall.position.set(0, 20, 0);
+buildingWallLeft.position.set(20,20,20);
+buildingWallRight.position.set(-20,20,20);
+buildingWallBack.position.set(0,20,40);
+buildingDoor.position.set(0,-7.5,-.3);
+buildingWindow.position.set(-10,20,-0.7);
+buildingWindow2.position.set(10,20,-0.7);
+buildingWindow3.position.set(-10,34,-0.7);
+buildingWindow4.position.set(10,34,-0.7);
+buildingWindow5.position.set(10,6,-0.7);
+buildingWindow6.position.set(-10,6,-0.7);
+buildingWindowPillar.position.set(10,10,10);
+// All building part objects
+buildingGroup.position.set(1,10,1);
+
+
+// Rotate objects
+groundGeo.rotateX(-Math.PI / 2);
+buildingWallLeft.rotateY(-Math.PI / 2);
+buildingWallRight.rotateY(-Math.PI / 2);
+buildingRoofGeo.rotateZ(Math.PI / 2);
+
+
+// Scale objects
+buildingGroup.scale.set(1,1,1);
+carGroup.scale.set(1,1,1);
+buildingDoor.scale.set(.6,.6,.6);
 
 
 // Create glorious light
@@ -156,7 +179,7 @@ camera.rotateY(20);
 controls = new THREE.OrbitControls(camera);
 controls.autoRotate = false;
 controls.autoRotateSpeed = 1;
-controls.noKeys = true;
+controls.noKeys = false;
 controls.keyPanSpeed = 100;
 controls.enableZoom = true;
 
@@ -197,7 +220,6 @@ var render = function () {
     carTire3.rotation.z -= tireSpeed * delta;
     carTire4.rotation.z -= tireSpeed * delta;
 
-    //carTireGroup.rotation.z += 1.2 * delta;
     controls.update();
     renderer.render(scene, camera);
 };
